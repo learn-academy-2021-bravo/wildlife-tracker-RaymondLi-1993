@@ -2,18 +2,33 @@ class TrackingsController < ApplicationController
 
     def index
        tracking = Tracking.all 
-       render json:"hello welcome to tracking"
+       render json: tracking
     end
 
+    def create
+        animal = Animal.find(params[:id]) 
+        animal.Tracking.create(tracking_params)
+        if tracking.valid?
+            render json: tracking
+         else
+            render json: tracking.errors  
+         end   
+      end
+
     def update
-        animal = Animal.find(params[:id])   
-        animal.update(animal_params)
-        if animal.valid?
-           render json: animal
+        tracking = Tracking.find(params[:id]);
+        tracking.update(tracking_params)
+        if tracking.valid?
+           render json: tracking
         else
-           render json: animal.errors  
+           render json: tracking.errors  
         end   
     end
+
+    def destroy
+      tracking = Tracking.find(params[:id]).delete  
+      render json: "sucessfully deleted"
+  end
 
 
     private
