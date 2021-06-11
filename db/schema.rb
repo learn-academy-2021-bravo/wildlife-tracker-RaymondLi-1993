@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_10_185230) do
+ActiveRecord::Schema.define(version: 2021_06_10_215750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_06_10_185230) do
 
   create_table "trackings", force: :cascade do |t|
     t.date "date"
-    t.integer "longitude"
-    t.integer "latitude"
+    t.string "longitude"
+    t.string "latitude"
     t.integer "animal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

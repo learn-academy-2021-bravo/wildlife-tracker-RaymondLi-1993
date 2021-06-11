@@ -6,8 +6,17 @@ class AnimalsController < ApplicationController
 
     def show
         animal = Animal.find(params[:id]) 
-        render json:animal
+        render json: Tracking.where(animal_id:params[:id])
     end
+
+    def create
+        animal = Animal.create(animal_params)
+        if animal.valid?
+          render json: animal
+        else
+          render json: animal.errors
+        end
+      end
 
 
     def update
